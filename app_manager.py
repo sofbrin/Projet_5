@@ -345,7 +345,10 @@ def selecting_a_category():
 
         input_user = input(App_DB_Cat_Menu)
 
-        if input_user == 's' and page.has_next():
+        if input_user == '0':
+            return
+
+        elif input_user == 's' and page.has_next():
             page = p.page(page_number+1)
             page_number += 1
 
