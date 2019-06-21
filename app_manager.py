@@ -399,7 +399,7 @@ def show_historic_substitution(category):
                     selection = int(input_user)
                     if selection in page_ids:
                         print(selection)
-                        display_product_db(page.object_list(selection))
+                        display_product_db(ProductDb.objects.get(id=selection))
                 except ValueError:
                     continue
 
@@ -409,13 +409,41 @@ def display_product_db(product):
     -->the user print on screen the choosen product's characteristics."""
 
     print('\nVoici les caractéristiques du produit ', product.name, '\n')
-    print('Catégorie            : ', product.category)
-    print('Marque               : ', product.brand)
-    print('Origine              : ', product.origin)
-    print('Lieux de fabrication : ', product.manufacturing_places)
-    print('Pays                 : ', product.countries)
-    print('Magasins             : ', product.store)
-    print('Indice Nutriscore    : ', product.nutriscore, '\n')
+
+    if product.category == '':
+        print('Catégorie            : non renseigné')
+    else:
+        print('Catégorie            :', product.category)
+
+    if product.brand == '':
+        print('Marque               : non renseigné')
+    else:
+        print('Marque               :', product.brand)
+
+    if product.origin == '':
+        print('Origine              : non renseigné')
+    else:
+        print('Origine              :', product.origin)
+
+    if product.manufacturing_places == '':
+        print('Lieux de fabrication : non renseigné')
+    else:
+        print('Lieux de fabrication :', product.manufacturing_places)
+
+    if product.countries == '':
+        print('Pays                 : non renseigné')
+    else:
+        print('Pays                 :', product.countries)
+
+    if product.store == '':
+        print('Magasins             : non renseigné')
+    else:
+        print('Magasins             :', product.store)
+
+    if product.nutriscore == '':
+        print('Indice Nutriscore    : non renseigné')
+    else:
+        print('Indice Nutriscore    :', product.nutriscore.upper(), '\n')
 
 
 if __name__ == '__main__':
