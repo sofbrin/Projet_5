@@ -379,14 +379,17 @@ def show_historic_substitution(category):
 
     while True:
         for product in page.object_list:
-            print('Produit ', product.product_original.id, product.product_original,
-                  '; Substitut ', product.product_replaceable.id, product.product_replaceable)
+            print('Produit n°', product.product_original.id, ':', product.product_original,
+                  '; Substitut n°', product.product_replaceable.id, ':', product.product_replaceable)
             page_ids.append(product.product_original.id)
             page_ids.append(product.product_replaceable.id)
 
             input_user = input(App_Products_Menu)
 
-            if input_user == 's' and page.has_next():
+            if input_user == '0':
+                return
+
+            elif input_user == 's' and page.has_next():
                 page = p.page(page_number + 1)
                 page_number += 1
 
@@ -398,7 +401,6 @@ def show_historic_substitution(category):
                 try:
                     selection = int(input_user)
                     if selection in page_ids:
-                        print(selection)
                         display_product_db(ProductDb.objects.get(id=selection))
                 except ValueError:
                     continue
