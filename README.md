@@ -4,8 +4,8 @@ Application PurBeurre
 
 1. Objet
 
-Ce programme permet de trouver de :
-- rechercher des prdouits alimentaires sur la base de données Open Food Facts,
+Ce programme permet de :
+- rechercher des produits alimentaires sur la base de données Open Food Facts,
 - proposer des substituts de meilleure qualité,
 - constituer une base de données personnelle de l'utilisateur,
 - sauvergarder ou pas produits et substituts avec leurs principales caractéristiques,
