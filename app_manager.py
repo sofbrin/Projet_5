@@ -84,8 +84,6 @@ def display_products(category):
         for idx, product in enumerate(products):
             if 'product_name' in product and product['product_name'] != '':
                 print(idx+1, product['product_name'])
-            #else:
-                #print(idx+1, 'ce produit ne contient pas assez d\'informations pour être affiché')
 
         input_user = input(App_Products_Menu)
 
@@ -98,11 +96,9 @@ def display_products(category):
         else:
             try:
                 selection = int(input_user)
-                if 20 >= selection >= 1:# and 'product_name' in products and products[selection-1]['product_name'] != '':
+                if 20 >= selection >= 1:
                     choose_product(products[selection-1], category)
-                #else:
-                    #print('\nLe produit ' + input_user + ' ne contient pas assez d\'informations pour être affiché. '
-                          #'Veuillez faire une autre sélection\n')
+
             except ValueError:
                 continue
 
@@ -373,9 +369,7 @@ def show_historic_substitution(category):
     print('Voici l\'historique de la catégorie :', category, '\n')
 
     products_db = HistoricDb.objects.filter(product_original__category=category).order_by('id')
-    """for product in products_db:
-        print(product.product_original, product.product_replaceable)"""
-    p = Paginator(products_db, 1)
+    p = Paginator(products_db, 5)
     page_number = 1
     page = p.page(page_number)
     page_ids = []
@@ -387,26 +381,26 @@ def show_historic_substitution(category):
             page_ids.append(product.product_original.id)
             page_ids.append(product.product_replaceable.id)
 
-            input_user = input(App_Products_Menu)
+        input_user = input(App_Products_Menu)
 
-            if input_user == '0':
-                return
+        if input_user == '0':
+            return
 
-            elif input_user == 's' and page.has_next():
-                page = p.page(page_number + 1)
-                page_number += 1
+        elif input_user == 's' and page.has_next():
+            page = p.page(page_number + 1)
+            page_number += 1
 
-            elif input_user == 'p' and page.has_previous():
-                page = p.page(page_number - 1)
-                page_number -= 1
+        elif input_user == 'p' and page.has_previous():
+            page = p.page(page_number - 1)
+            page_number -= 1
 
-            else:
-                try:
-                    selection = int(input_user)
-                    if selection in page_ids:
-                        display_product_db(ProductDb.objects.get(id=selection))
-                except ValueError:
-                    continue
+        else:
+            try:
+                selection = int(input_user)
+                if selection in page_ids:
+                    display_product_db(ProductDb.objects.get(id=selection))
+            except ValueError:
+                continue
 
 
 def display_product_db(product):
