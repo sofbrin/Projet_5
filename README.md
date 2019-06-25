@@ -13,7 +13,7 @@ Ce programme permet de :
 
 ### 2. Installation des dépendances :
 
-pip install -r requirements.txt
+- pip install -r requirements.txt
 
 ### 3. Lancement de l'application :
 
