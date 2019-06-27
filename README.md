@@ -17,6 +17,6 @@ Ce programme permet de :
 
 ### 3. Lancement de l'application :
 
-- python manage.py make migrations
+- python manage.py makemigrations
 - python manage.py migrate
 - python app_manager.py
